@@ -1,0 +1,180 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	background: #F8F8F8;
+	overflow-y: scroll;
+}
+
+#book{
+	padding: 20px;
+	padding-bottom: 36px;
+	font-size: 1em;
+}
+
+
+
+
+section{
+	
+}
+
+p{
+	margin: .5em 0;
+}
+
+li{
+	margin: .5em 0;
+}
+
+cite{
+	display: block;
+	margin: 2em;
+	margin-left: 3em;
+	padding: .5em;
+	border-left: 4px solid #8888;
+}
+
+
+
+
+button,
+input[type="button"],
+.button{
+	display: inline-block;
+	padding: .5em;
+	
+	font-family: sans-serif;
+	color: #111;
+	font-size: .9em;
+	
+	background: #FFF;
+	border: 1px solid #8888;
+	border-radius: 8px;
+	box-shadow: 0 0 2px #0003;
+	cursor: pointer;
+}
+button:hover,
+input[type="button"]:hover,
+.button:hover{
+	box-shadow: 0 0 4px #0003;
+}
+button:active,
+input[type="button"]:active,
+.button:active{
+	background: #F8F8F8;
+	box-shadow: 0 0 0 #0003, 0 0 5px #0003 inset;
+}
+button:disabled,
+input[type="button"]:disabled,
+.button:disabled{
+	background: #EEE;
+	box-shadow: 0 0 0 #0003, 0 0 2px #0003 inset;
+	cursor: auto;
+}
+
+.button-block button,
+.button-block input[type="button"],
+.button-block .button{
+	border-radius: 0;
+}
+.button-block button:first-child,
+.button-block input[type="button"]:first-child,
+.button-block .button:first-child{
+	border-radius: 8px 0 0 8px;
+}
+.button-block button:last-child,
+.button-block input[type="button"]:last-child,
+.button-block .button:last-child{
+	border-radius: 0 8px 8px 0;
+}
+
+button img,
+input[type="button"] img,
+.button img{
+	display: block;
+	height: 1.2em;
+}
+
+
+ol.contents {
+	counter-reset: i 0;
+	list-style: none;
+	text-align: left;
+}
+ol.contents li{
+	position: relative;
+	display: block;
+	padding: .5em;
+	padding-right: 2em;
+}
+ol.contents li:after {
+	display: block;
+	position: absolute;
+	top: .5em;
+	right: .5em;
+	float: right;
+	content: counter(i);    
+	counter-increment: i;
+	color: #888;
+}
+
+
+nav{
+	display: flex;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	justify-content: center;
+}
+nav button{
+	border-bottom: none;
+	border-radius: var(--top-left-radius,0) var(--top-right-radius,0) 0 0;
+}
+nav button:first-of-type{
+	--top-left-radius: 16px;
+}
+nav button:last-of-type{
+	--top-right-radius: 16px;
+}
+nav button.prev img{
+	transform: rotate(180deg)
+}
+
+
+#settings{
+	position: fixed;
+	max-width: 800px;
+	bottom: 0;
+	left: 0;
+	
+	background: #FFF;
+	border-radius: 16px;
+	transform: translateY(100%);
+	transition:.4s cubic-bezier(.68,-0.55,.27,1.55);
+}
+#settings.open{
+	box-shadow: 0 0 4px #0003;
+	bottom: 3em;
+	left: .8em;
+	transform: translateY(0);
+}
+
+#settings .button-block{
+	margin: 1em;
+}
+
+#settings label input[type="file"]{
+	display: none;
+}
+
+
+
+
+
+
+

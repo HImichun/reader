@@ -1,0 +1,1 @@
+const reader = new FB2Reader()
