@@ -3,13 +3,21 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+:focus {
+	outline:none
+}
+::-moz-focus-inner {
+	border:0
+} 
 
 body{
 	background: #F8F8F8;
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 #book{
+	position: relative;
 	padding: 20px;
 	padding-bottom: 36px;
 	font-size: 1em;
@@ -25,6 +33,9 @@ section{
 p{
 	margin: .5em 0;
 }
+p.empty-line{
+	height: 1em;
+}
 
 li{
 	margin: .5em 0;
@@ -32,7 +43,7 @@ li{
 
 cite{
 	display: block;
-	margin: 2em;
+	margin: .5em;
 	margin-left: 3em;
 	padding: .5em;
 	border-left: 4px solid #8888;
@@ -53,7 +64,7 @@ input[type="button"],
 	
 	background: #FFF;
 	border: 1px solid #8888;
-	border-radius: 8px;
+	border-radius: .5em;
 	box-shadow: 0 0 2px #0003;
 	cursor: pointer;
 }
@@ -135,10 +146,13 @@ nav button{
 	border-bottom: none;
 	border-radius: var(--top-left-radius,0) var(--top-right-radius,0) 0 0;
 }
-nav button:first-of-type{
+nav button.hidden{
+	display: none;
+}
+nav button.first{
 	--top-left-radius: 16px;
 }
-nav button:last-of-type{
+nav button.last{
 	--top-right-radius: 16px;
 }
 nav button.prev img{
@@ -150,26 +164,33 @@ nav button.prev img{
 	position: fixed;
 	max-width: 800px;
 	bottom: 0;
-	left: 0;
+	left: 14px;
 	
+	opacity: 0;
 	background: #FFF;
 	border-radius: 16px;
 	transform: translateY(100%);
-	transition:.4s cubic-bezier(.68,-0.55,.27,1.55);
+	transition: .2s cubic-bezier(0.4, 0.0, 1, 1);
 }
 #settings.open{
 	box-shadow: 0 0 4px #0003;
-	bottom: 3em;
-	left: .8em;
+	bottom: 48px;
+	
+	opacity: 1;
 	transform: translateY(0);
+	transition:	.2s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
 #settings .button-block{
-	margin: 1em;
+	margin: 16px;
 }
 
 #settings label input[type="file"]{
 	display: none;
+}
+
+#settings .serif{
+	font-family: serif;
 }
 
 
