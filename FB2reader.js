@@ -73,40 +73,16 @@ class FB2Reader{
 		// this.fileReader.result = null
 
 		this.settingsEl.className = ""
+		this.generateContents()
 		this.openContents()
 	}
 
 	openContents(){
 		console.log("meow")
 
-		const title = document.createElement("h2")
-		title.innerText = "Contents"
-
-		const list = document.createElement("ol")
-		list.className = "contents"
-
-		for(const chapter of this.chapters){
-			const li = document.createElement("li")
-			li.className = "button"
-
-			if(chapter.title.length > 0)
-				li.innerHTML = chapter.title.replace(/<.*?>/g, "")
-			else
-				li.innerHTML = chapter.content.substr(0,100).replace(/(<.*?>)|(<.*[^>]$)/g, "").substr(0,60) + "..."
-				
-			li.addEventListener("click", e=>{
-				if(e.button === 0){
-					this.openChapter(chapter.number)
-					this.animateBook("bottom to top")
-				}
-			})
-
-			list.appendChild(li)
-		}
-
 		this.currentChapter = null
 		this.updateNavigation([ "settings", "openBook" ])
-		this.renderPage(title, list)
+		this.renderPage.apply(this, this.contentsPage)
 		this.animateBook("bottom to top")
 		window.scrollTo(0, 0)
 	}
@@ -269,42 +245,6 @@ class FB2Reader{
 	generateAndRenderSettingsEl(){
 		const settings = document.createElement("div")
 		settings.id = "settings"
-		// settings.className = "open"
-
-		// ;(()=>{
-		// 	const fileBlock = document.createElement("div")
-		// 	fileBlock.className = "button-block"
-		// 	//
-		// 	const label = document.createElement("label")
-		// 	label.className = "button"
-		// 	//
-		// 	const labelText = document.createElement("span")
-		// 	labelText.innerText = "choose an fb2 book"
-		// 	label.appendChild(labelText)
-		// 	//
-		// 	const file = document.createElement("input")
-		// 	file.type = "file"
-		// 	file.name = "input-file"
-		// 	file.setAttribute("accept",".fb2")
-		// 	label.appendChild(file)
-		// 	//
-		// 	const button = document.createElement("button")
-		// 	button.innerText = "open"
-		// 	button.disabled = true
-		// 	//
-		// 	file.onchange = () => {
-		// 		button.disabled = false
-		// 		labelText.innerText = file.files[0].name
-		// 	}
-		// 	button.onclick = e => {
-		// 		if(e.button != 0) return
-		// 		button.disabled = true
-		// 		this.openBook(file.files[0])
-		// 	}
-		// 	//
-		// 	fileBlock.appendChildren(label, button)
-		// 	settings.appendChild(fileBlock)
-		// })()
 
 		;(()=>{
 			const align = document.createElement("div")
@@ -385,6 +325,38 @@ class FB2Reader{
 
 		document.body.appendChild(settings)
 		return settings
+	}
+
+	generateContents(){
+		const page = document.createElement("div")
+		page.className = "page"
+
+		const title = document.createElement("h2")
+		title.innerText = "Contents"
+
+		const list = document.createElement("ol")
+		list.className = "contents"
+
+		for(const chapter of this.chapters){
+			const li = document.createElement("li")
+			li.className = "button"
+
+			if(chapter.title.length > 0)
+				li.innerHTML = chapter.title.replace(/<.*?>/g, "")
+			else
+				li.innerHTML = chapter.content.substr(0,100).replace(/(<.*?>)|(<.*[^>]$)/g, "").substr(0,60) + "..."
+				
+			li.addEventListener("click", e=>{
+				if(e.button === 0){
+					this.openChapter(chapter.number)
+					this.animateBook("bottom to top")
+				}
+			})
+
+			list.appendChild(li)
+		}
+
+		this.contentsPage = [title, list]
 	}
 
 	renderPage(...what){
