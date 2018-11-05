@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	overflow: hidden;
 }
 :focus {
 	outline:none
@@ -16,7 +17,6 @@ html{
 }
 body{
 	background: #F8F8F8;
-/* 	overflow-x: hidden; */
   min-height: 100vh;
 }
 
